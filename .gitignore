@@ -1,0 +1,34 @@
+# Go binary files
+*.exe
+*.exe~
+*.out
+*.test
+*.dll
+*.so
+*.dylib
+
+# Go build output directory
+/bin/
+/obj/
+
+# Go workspace settings
+*.idea/
+*.vscode/
+
+# Go module cache
+/vendor/
+
+# Go coverage output
+*.coverprofile
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
