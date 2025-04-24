@@ -1,4 +1,4 @@
-package authorstats
+package parsers
 
 import (
 	"fmt"

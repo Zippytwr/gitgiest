@@ -1,4 +1,4 @@
-package logparser
+package parsers
 
 import (
 	"fmt"
