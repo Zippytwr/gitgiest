@@ -34,7 +34,12 @@ var readmeonly = &cli.Command{
 			if commitHash == "" {
 				continue
 			}
-
+			cmdAuthor := exec.Command("git", "show", "-s", "--format=%an", commitHash)
+			authorBytes, err := cmdAuthor.Output()
+			author := "Неизвестный"
+			if err == nil {
+				author = strings.TrimSpace(string(authorBytes))
+			}
 			cmd := exec.Command("git", "show", "--name-only", "--pretty=", commitHash)
 			out, err := cmd.Output()
 			if err != nil {
@@ -43,11 +48,11 @@ var readmeonly = &cli.Command{
 			}
 
 			files := strings.Split(strings.TrimSpace(string(out)), "\n")
-
 			if len(files) == 1 && strings.ToLower(files[0]) == "readme.md" {
-				fmt.Printf("🔸 `%s` — ⚠️ **Лентяй засечён!** Коммит затронул только `README.md`\n", commitHash)
+
+				fmt.Printf("\033[1;33m⚠️  %s — Обнаружен Лентяй! (%s)\n   🛋️ Звание: README-only Commando\033[0m\n", commitHash, author)
 			} else {
-				fmt.Printf("✅ `%s` — Внесены **реальные изменения**. Уважаем ✨\n", commitHash)
+				fmt.Printf("\033[1;32m✅ %s — Хорошая работа, %s! Реальные изменения внесены.\033[0m\n", commitHash, author)
 			}
 		}
 		return nil
