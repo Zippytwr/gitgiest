@@ -21,3 +21,7 @@ func RunGitAuthorStats(repoPath string) ([]byte, error) {
 	cmd := exec.Command("git", "-C", repoPath, "log", "--pretty=format:%an")
 	return cmd.Output()
 }
+func RunGitReadmeOnly(repopath string) ([]byte, error) {
+	cmd := exec.Command("git", "log", "--pretty=format:%H")
+	return cmd.Output()
+}
