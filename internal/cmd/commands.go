@@ -6,4 +6,5 @@ var Commands = []*cli.Command{
 	logCommand,
 	authorstats,
 	readmeonly,
+	silentCommits,
 }
