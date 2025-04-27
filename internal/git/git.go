@@ -21,7 +21,19 @@ func RunGitAuthorStats(repoPath string) ([]byte, error) {
 	cmd := exec.Command("git", "-C", repoPath, "log", "--pretty=format:%an")
 	return cmd.Output()
 }
-func RunGitReadmeOnly(repopath string) ([]byte, error) {
+func RunGitReadmeOnly(repoPath string) ([]byte, error) {
+	err := os.Chdir(repoPath)
+	if err != nil {
+		return nil, err
+	}
+	cmd := exec.Command("git", "log", "--pretty=format:%H")
+	return cmd.Output()
+}
+func RunGitSilent(repoPath string) ([]byte, error) {
+	err := os.Chdir(repoPath)
+	if err != nil {
+		return nil, err
+	}
 	cmd := exec.Command("git", "log", "--pretty=format:%H")
 	return cmd.Output()
 }
